@@ -1,0 +1,40 @@
+.zodiac-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.zodiac-card {
+  padding: 20px 12px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  cursor: pointer; position: relative; overflow: hidden;
+}
+.zodiac-card--active {
+  border-color: var(--accent-gold) !important;
+  background: rgba(212,168,67,0.1) !important;
+  box-shadow: 0 0 30px rgba(212,168,67,0.15) !important;
+}
+.zodiac-card__symbol { font-size: 2.2rem; }
+.zodiac-card__name { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--text-primary); }
+.zodiac-card__dates { font-size: 0.65rem; color: var(--text-muted); }
+.zodiac-card__element { font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+
+.horoscope-reading {
+  max-width: 700px; margin: 0 auto;
+  padding: 40px;
+  animation: fadeInUp 0.4s ease;
+}
+.horoscope-reading__header { display: flex; align-items: center; gap: 20px; }
+.horoscope-reading__symbol { font-size: 3.5rem; }
+.horoscope-reading__header h2 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--accent-gold); }
+.horoscope-reading__header p { color: var(--text-secondary); font-size: 0.875rem; }
+.horoscope-reading__date { color: var(--accent-gold); font-size: 0.875rem; font-weight: 600; margin-bottom: 16px; }
+.horoscope-reading__text { color: var(--text-primary); font-size: 1.05rem; line-height: 1.9; font-family: 'Playfair Display', serif; }
+.horoscope-reading__note { margin-top: 24px; padding: 16px; background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2); border-radius: var(--radius-sm); font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+.horoscope-reading__note a { color: var(--accent-gold); font-weight: 600; }
+.horoscope-reading__note a:hover { text-decoration: underline; }
+
+@media (max-width: 968px) { .zodiac-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 580px) { .zodiac-grid { grid-template-columns: repeat(3, 1fr); } .horoscope-reading { padding: 24px; } }
+@media (max-width: 360px) { .zodiac-grid { grid-template-columns: repeat(2, 1fr); } }

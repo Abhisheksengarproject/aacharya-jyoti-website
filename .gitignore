@@ -20,3 +20,11 @@ npm-debug.log*
 # ── OS files ───────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+
+# ── Large binary/installer files — should never be in source code ──
+*.exe
+*.dmg
+*.zip
+*.tar.gz
+*.msi
+*.pkg

@@ -5,10 +5,7 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
-  overflow: hidden;
   padding-top: 90px;
-  /* The stars-bg inside uses position:absolute — hero must be the reference */
-  isolation: isolate;
 }
 
 .hero__zodiac-ring {

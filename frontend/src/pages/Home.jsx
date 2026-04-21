@@ -25,10 +25,11 @@ const zodiacSigns = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '�
 const Home = () => {
   return (
     <div className="page home">
+      {/* Global background gradient — position:fixed z-index:-1, behind everything */}
+      <div className="stars-bg" />
 
-      {/* Hero Section — stars-bg is INSIDE hero so position:absolute works */}
+      {/* Hero Section */}
       <section className="hero">
-        <div className="stars-bg" />
 
         <div className="hero__zodiac-ring">
           {zodiacSigns.map((sign, i) => (

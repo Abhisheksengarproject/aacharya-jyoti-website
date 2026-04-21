@@ -4,8 +4,8 @@
 :root {
   --bg-primary: #06030f;
   --bg-secondary: #0d0820;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --bg-card-hover: rgba(255, 255, 255, 0.08);
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --bg-card-hover: rgba(255, 255, 255, 0.09);
 
   --accent-gold: #d4a843;
   --accent-gold-light: #f0c870;
@@ -37,10 +37,6 @@
 
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* iOS safe area support */
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* ===== RESET & BASE ===== */
@@ -48,14 +44,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* Prevent text size adjustment on iOS */
   -webkit-text-size-adjust: 100%;
 }
 
 html {
   scroll-behavior: smooth;
-  /* Fix for iOS 100vh bug */
-  height: -webkit-fill-available;
 }
 
 body {
@@ -64,17 +57,16 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-  /* Smooth scrolling on iOS */
+  /* iOS smooth scrolling */
   -webkit-overflow-scrolling: touch;
 }
 
 h1, h2, h3, h4 { font-family: 'Cinzel', serif; line-height: 1.2; }
 
-a { text-decoration: none; color: inherit; touch-action: manipulation; }
-img { max-width: 100%; display: block; }
-button { cursor: pointer; font-family: inherit; border: none; outline: none; touch-action: manipulation; }
+a    { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
+img  { max-width: 100%; display: block; }
+button { cursor: pointer; font-family: inherit; border: none; outline: none;
+         -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 input, textarea, select { font-family: inherit; outline: none; }
 
 /* ===== SCROLLBAR (desktop only) ===== */
@@ -89,95 +81,65 @@ input, textarea, select { font-family: inherit; outline: none; }
 
 .section-header { text-align: center; margin-bottom: 64px; }
 .section-label {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--accent-gold);
-  background: rgba(212, 168, 67, 0.1);
-  padding: 6px 16px;
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(212, 168, 67, 0.3);
+  display: inline-block; font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--accent-gold);
+  background: rgba(212, 168, 67, 0.1); padding: 6px 16px;
+  border-radius: var(--radius-full); border: 1px solid rgba(212, 168, 67, 0.3);
   margin-bottom: 16px;
 }
 .section-title {
   font-size: clamp(1.6rem, 5vw, 3rem);
   background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   margin-bottom: 16px;
 }
 .section-subtitle {
   color: var(--text-secondary);
   font-size: clamp(0.9rem, 2.5vw, 1.05rem);
-  max-width: 560px;
-  margin: 0 auto;
+  max-width: 560px; margin: 0 auto;
 }
 
 /* ===== BUTTONS ===== */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
-  border-radius: var(--radius-full);
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-  /* Prevent double-tap zoom on mobile */
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: var(--radius-full);
+  font-size: 0.9rem; font-weight: 600; transition: var(--transition);
+  position: relative; overflow: hidden;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  user-select: none; text-decoration: none;
 }
-.btn-primary {
-  background: var(--gradient-gold);
-  color: #1a0a00;
-  box-shadow: var(--shadow-gold);
-}
-.btn-primary:active { transform: scale(0.97); }
-@media (hover: hover) {
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(212, 168, 67, 0.4); }
-}
+.btn-primary  { background: var(--gradient-gold); color: #1a0a00; box-shadow: var(--shadow-gold); }
+.btn-secondary { background: transparent; color: var(--accent-gold); border: 1px solid var(--border-glow); }
+.btn-purple   { background: var(--gradient-purple); color: white; box-shadow: var(--shadow-purple); }
 
-.btn-secondary {
-  background: transparent;
-  color: var(--accent-gold);
-  border: 1px solid var(--border-glow);
-}
-.btn-secondary:active { opacity: 0.8; }
+.btn-primary:active, .btn-purple:active { opacity: 0.88; }
+.btn-secondary:active { background: rgba(212, 168, 67, 0.08); }
+
 @media (hover: hover) {
+  .btn-primary:hover  { transform: translateY(-2px); box-shadow: 0 0 40px rgba(212, 168, 67, 0.4); }
   .btn-secondary:hover { background: rgba(212, 168, 67, 0.1); transform: translateY(-2px); }
+  .btn-purple:hover   { transform: translateY(-2px); box-shadow: 0 0 40px rgba(124, 58, 237, 0.5); }
 }
 
-.btn-purple {
-  background: var(--gradient-purple);
-  color: white;
-  box-shadow: var(--shadow-purple);
-}
-.btn-purple:active { transform: scale(0.97); }
-@media (hover: hover) {
-  .btn-purple:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(124, 58, 237, 0.5); }
-}
-
-/* ===== GLASS CARD ===== */
+/* ===== GLASS CARD ===════════════════════════════════════════════════════
+   IMPORTANT: NO transform:translateZ(0), NO will-change, NO backdrop-filter
+   on mobile. These were causing the iOS black screen during scroll.
+   Desktop gets a subtle blur, mobile gets a solid semi-transparent bg.
+======================================================================== */
 .glass-card {
-  background: var(--bg-card);
-  /* Use lighter blur on mobile for performance */
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  background: rgba(13, 8, 32, 0.75);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  transition: var(--transition);
-  /* Prevent iOS black-flicker on scroll */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  will-change: auto;
+  transition: border-color 0.3s ease, background 0.3s ease;
 }
-@media (hover: hover) {
+
+/* Blur only on desktop where GPU is more capable */
+@media (min-width: 769px) and (hover: hover) {
+  .glass-card {
+    background: var(--bg-card);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
   .glass-card:hover {
     background: var(--bg-card-hover);
     border-color: var(--border-glow);
@@ -185,38 +147,33 @@ input, textarea, select { font-family: inherit; outline: none; }
     box-shadow: var(--shadow-card);
   }
 }
-.glass-card:active {
-  background: var(--bg-card-hover);
-  border-color: var(--border-glow);
-}
+.glass-card:active { background: rgba(255,255,255,0.07); border-color: var(--border-glow); }
 
-/* ===== STARS BACKGROUND ===== */
-/* KEY FIX: Changed from position:fixed to position:absolute to stop iOS black-screen bug */
+/* ===== STARS BACKGROUND ═══════════════════════════════════════════════
+   Use position:fixed but with pointer-events:none and NO transform/filter.
+   A simple radial-gradient background does NOT trigger GPU compositing.
+   This is safe on iOS — it's just a colour gradient, not an image layer.
+======================================================================== */
 .stars-bg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;      /* behind EVERYTHING — no stacking context conflicts */
   background:
-    radial-gradient(ellipse at 20% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(212, 168, 67, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(20, 184, 166, 0.04) 0%, transparent 70%);
+    radial-gradient(ellipse at 20% 20%, rgba(124, 58, 237, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(212, 168, 67, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(20, 184, 166, 0.03) 0%, transparent 70%);
 }
 
 /* ===== PAGE WRAPPER ===== */
-.page { position: relative; z-index: 1; }
+/* Remove z-index:1 — it was creating stacking context conflicts with stars-bg */
+.page { position: relative; }
 
 /* ===== SECTION PADDING ===== */
 .section { padding: 96px 0; }
 
 /* ===== DIVIDER ===== */
-.divider {
-  width: 80px; height: 3px;
-  background: var(--gradient-gold);
-  border-radius: 2px;
-  margin: 16px auto;
-}
+.divider { width: 80px; height: 3px; background: var(--gradient-gold); border-radius: 2px; margin: 16px auto; }
 
 /* ===== FORM STYLES ===== */
 .form-group { display: flex; flex-direction: column; gap: 8px; }
@@ -229,13 +186,11 @@ input, textarea, select { font-family: inherit; outline: none; }
   border-radius: var(--radius-sm);
   padding: 12px 16px;
   color: var(--text-primary);
-  font-size: 1rem; /* Prevents iOS auto-zoom (must be >= 16px) */
+  font-size: 1rem;          /* min 16px — prevents iOS auto-zoom */
   transition: var(--transition);
-  /* Kill iOS inner shadow */
-  -webkit-appearance: none;
+  -webkit-appearance: none; /* removes iOS inner shadow on inputs */
   appearance: none;
 }
-/* Fix iOS dark bg for select dropdown */
 .form-group select option { background: #0d0820; color: var(--text-primary); }
 .form-group input:focus,
 .form-group textarea:focus,
@@ -246,62 +201,36 @@ input, textarea, select { font-family: inherit; outline: none; }
 }
 
 /* ===== BADGE ===== */
-.badge {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
+.badge { display: inline-block; padding: 3px 10px; border-radius: var(--radius-full); font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
 .badge-gold   { background: rgba(212,168,67,0.15);  color: var(--accent-gold);         border: 1px solid rgba(212,168,67,0.3); }
 .badge-purple { background: rgba(124,58,237,0.15);  color: var(--accent-purple-light);  border: 1px solid rgba(124,58,237,0.3); }
 .badge-teal   { background: rgba(20,184,166,0.15);  color: var(--accent-teal);          border: 1px solid rgba(20,184,166,0.3); }
 
-/* ===== ANIMATIONS ===== */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-}
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(212,168,67,0.2); }
-  50% { box-shadow: 0 0 50px rgba(212,168,67,0.5); }
-}
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes twinkle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
-}
+/* ===== ANIMATIONS ═══════════════════════════════════════════════════════
+   Disable ALL animations on mobile — they trigger GPU repaints that cause
+   the iOS black screen during momentum scrolling.
+======================================================================== */
+@keyframes float       { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes pulse-glow  { 0%, 100% { box-shadow: 0 0 20px rgba(212,168,67,0.2); } 50% { box-shadow: 0 0 50px rgba(212,168,67,0.5); } }
+@keyframes spin-slow   { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes fadeInUp    { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes twinkle     { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-/* Disable float animation on mobile for better performance */
-@media (prefers-reduced-motion: reduce), (max-width: 768px) {
-  .float, .hero__float-card { animation: none !important; }
-  .spin-slow { animation: none !important; }
+/* Only animate on desktop */
+@media (hover: hover) and (min-width: 769px) {
+  .float      { animation: float      6s  ease-in-out infinite; }
+  .pulse-glow { animation: pulse-glow 3s  ease-in-out infinite; }
+  .spin-slow  { animation: spin-slow  20s linear      infinite; }
+  .fade-in-up { animation: fadeInUp   0.6s ease forwards;       }
 }
-.float { animation: float 6s ease-in-out infinite; }
-.pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-.spin-slow { animation: spin-slow 20s linear infinite; }
-.fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+/* Twinkle only on the small star icon — very lightweight, OK on mobile */
+.navbar__logo-icon { animation: twinkle 2s ease-in-out infinite; }
 
 /* ===== LOADING SPINNER ===== */
 .spinner {
   width: 40px; height: 40px;
-  border: 3px solid rgba(212,168,67,0.2);
-  border-top-color: var(--accent-gold);
-  border-radius: 50%;
-  animation: spin-slow 0.8s linear infinite;
+  border: 3px solid rgba(212,168,67,0.2); border-top-color: var(--accent-gold);
+  border-radius: 50%; animation: spin-slow 0.8s linear infinite;
   margin: 48px auto;
 }
 
@@ -310,12 +239,6 @@ input, textarea, select { font-family: inherit; outline: none; }
   .section { padding: 60px 0; }
   .container { padding: 0 16px; }
   .section-header { margin-bottom: 36px; }
-  /* Remove backdrop-filter on low-power mobile to prevent black screen */
-  .glass-card {
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    background: rgba(13, 8, 32, 0.85);
-  }
 }
 @media (max-width: 480px) {
   .btn { padding: 11px 20px; font-size: 0.875rem; }

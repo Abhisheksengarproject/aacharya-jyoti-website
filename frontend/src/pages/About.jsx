@@ -62,7 +62,7 @@ const About = () => {
             <p>I specialize in Kundali analysis, Numerology, Tarot, and Vastu Shastra — each a different lens through which we can understand the universe's plan for you. I believe that astrology is not about predicting a fixed fate, but about helping you understand the energies at play and make empowered choices.</p>
             <br />
             <p>My approach is compassionate, confidential, and deeply rooted in both ancient scriptures and modern understanding. Whether you are navigating a career crossroads, seeking clarity in relationships, or simply curious about your cosmic blueprint — I am here to light the way.</p>
-            <div style={{ display: 'flex', gap: '16px', marginTop: '32px', flexWrap: 'wrap' }}>
+            <div className="about-bio__actions">
               <Link to="/booking" className="btn btn-primary">Book a Session <FaArrowRight /></Link>
               <Link to="/services" className="btn btn-secondary">Our Services</Link>
             </div>

@@ -50,6 +50,13 @@
 .about-bio__badge span:last-child { font-size: 0.72rem; font-weight: 600; }
 .about-bio__text p { color: var(--text-secondary); line-height: 1.85; font-size: clamp(0.875rem, 2vw, 1rem); }
 
+.about-bio__actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
 /* ===== CREDENTIALS ===== */
 .credentials-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .credential-card { padding: 28px 20px; text-align: center; }
@@ -101,6 +108,9 @@
 @media (max-width: 968px) {
   .page-header { padding: 110px 0 48px; }
   .about-bio__grid { grid-template-columns: 1fr; text-align: center; gap: 32px; }
+
+  /* Center the bio action buttons on mobile */
+  .about-bio__actions { justify-content: center; }
 
   /* Show the photo frame centered on tablet */
   .about-bio__visual { display: flex; justify-content: center; margin-bottom: 48px; }

@@ -63,10 +63,19 @@
 .footer__heart { color: var(--accent-pink); display: inline; margin: 0 4px; font-size: 0.8rem; }
 
 @media (max-width: 968px) {
-  .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer { padding: 60px 0 0; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 28px; }
   .footer__brand { grid-column: 1 / -1; }
 }
 @media (max-width: 540px) {
-  .footer__grid { grid-template-columns: 1fr; }
+  .footer { padding: 48px 0 0; }
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
   .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+  /* Ensure no text hugs left edge on small screens */
+  .footer__links li a,
+  .footer__contact-info li { font-size: 0.9rem; }
+  .footer__col-title { font-size: 0.8rem; }
 }

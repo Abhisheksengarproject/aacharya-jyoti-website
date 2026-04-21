@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaArrowRight, FaStar, FaMoon, FaSun, FaOm, FaWhatsapp } from 'react-icons/fa';
+import { FaArrowRight, FaStar, FaMoon, FaOm, FaWhatsapp } from 'react-icons/fa';
 import { GiStarFormation } from 'react-icons/gi';
 import aacharyaImg from '../assets/images/image.jpg';
 import './Home.css';
@@ -25,11 +25,11 @@ const zodiacSigns = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '�
 const Home = () => {
   return (
     <div className="page home">
-      {/* Stars */}
-      <div className="stars-bg" />
 
-      {/* Hero Section */}
+      {/* Hero Section — stars-bg is INSIDE hero so position:absolute works */}
       <section className="hero">
+        <div className="stars-bg" />
+
         <div className="hero__zodiac-ring">
           {zodiacSigns.map((sign, i) => (
             <span key={i} className="hero__zodiac-sign" style={{ '--i': i }}>
@@ -39,14 +39,17 @@ const Home = () => {
         </div>
 
         <div className="container hero__content">
+          {/* LEFT — Text */}
           <div className="hero__text">
-            <div className="section-label">✨ Vedic Astrology & Spiritual Guidance</div>
+            <div className="section-label">✨ Vedic Astrology &amp; Spiritual Guidance</div>
             <h1 className="hero__title">
               Discover Your <br />
               <span className="hero__title-accent">Cosmic Destiny</span>
             </h1>
             <p className="hero__subtitle">
-              With over years of experience in Vedic astrology, Aacharya Jyoti guides you through life's journey with the ancient wisdom of the stars. From Kundali readings to Vastu consultations — your answers await.
+              With over 15 years of experience in Vedic astrology, Aacharya Jyoti
+              guides you through life's journey with the ancient wisdom of the stars.
+              From Kundali readings to Vastu consultations — your answers await.
             </p>
             <div className="hero__actions">
               <Link to="/booking" className="btn btn-primary hero__btn">
@@ -57,7 +60,7 @@ const Home = () => {
               </Link>
               <a
                 href="https://wa.me/919425024728"
-                className="btn hero__whatsapp"
+                className="hero__whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -66,17 +69,25 @@ const Home = () => {
             </div>
           </div>
 
+          {/* RIGHT — Photo */}
           <div className="hero__visual">
-            <div className="hero__photo-wrapper pulse-glow">
-              <div className="hero__photo-ring spin-slow" />
+            {/* Removed pulse-glow and spin-slow from wrapper — causes iOS black screen */}
+            <div className="hero__photo-wrapper">
+              <div className="hero__photo-ring" />
               <div className="hero__photo-inner">
-                <img src={aacharyaImg} alt="Aacharya Jyoti — Vedic Astrologer" className="hero__photo-img" />
+                <img
+                  src={aacharyaImg}
+                  alt="Aacharya Jyoti — Vedic Astrologer"
+                  className="hero__photo-img"
+                />
               </div>
               <div className="hero__photo-nameplate">
                 <p>Aacharya Jyoti</p>
                 <span>Vedic Astrologer</span>
               </div>
             </div>
+
+            {/* Floating cards — hidden on mobile via CSS */}
             <div className="hero__floating-cards">
               <div className="hero__float-card" style={{ top: '5%', right: '10px' }}>
                 <FaStar className="hero__float-icon" style={{ color: 'var(--accent-gold)' }} />
@@ -92,11 +103,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="hero__scroll-hint">
-          <span />
-          <p>Scroll to explore</p>
         </div>
       </section>
 
@@ -121,7 +127,9 @@ const Home = () => {
             <div className="section-label">✦ What We Offer</div>
             <h2 className="section-title">Our Cosmic Services</h2>
             <div className="divider" />
-            <p className="section-subtitle">Explore the many ways Aacharya Jyoti can illuminate your path to happiness and success.</p>
+            <p className="section-subtitle">
+              Explore the many ways Aacharya Jyoti can illuminate your path to happiness and success.
+            </p>
           </div>
           <div className="services-grid">
             {services.map((svc) => (
@@ -135,7 +143,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <div style={{ textAlign: 'center', marginTop: '48px' }}>
+          <div style={{ textAlign: 'center', marginTop: '40px' }}>
             <Link to="/services" className="btn btn-purple">
               View All Services <FaArrowRight />
             </Link>

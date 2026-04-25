@@ -291,7 +291,7 @@ const Booking = () => {
             </div>
 
             <p className="bcp__whatsapp-note">
-              📲 Aacharya Jyoti has been notified on WhatsApp. She will confirm the slot shortly.
+              📲 Aacharya Jyoti has been notified instantly. She will confirm the slot shortly.
             </p>
 
             {/* Actions */}

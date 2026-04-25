@@ -23,7 +23,7 @@ const getRazorpay = () => {
 
 // ─── Service Prices (in paise — ₹1 = 100 paise) ──────────────────────────────
 const SERVICE_PRICES = {
-  'Kundali Reading':        50000,  // ₹500
+  'Kundali Reading':        100,    // ₹1 — TEMPORARY for live testing (change back to 50000 later)
   'Numerology':             40000,  // ₹400
   'Tarot Card Reading':     30000,  // ₹300
   'Vastu Consultation':     80000,  // ₹800

@@ -9,7 +9,7 @@ const services = [
     tagline: 'Your Cosmic Blueprint',
     desc: 'A detailed analysis of your birth chart revealing personality traits, life events, strengths, and challenges written in the stars.',
     features: ['Birth Chart Analysis', 'Planetary Positions', 'Dasha Predictions', 'Remedies & Gemstones'],
-    price: '₹1,500', duration: '60 min', category: 'Kundali',
+    price: '₹1', duration: '60 min', category: 'Kundali',
   },
   {
     id: 'numerology', icon: '🔢', title: 'Numerology',

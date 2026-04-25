@@ -37,18 +37,18 @@ const buildBookingMessage = (booking, paymentId, amountPaise) => {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   });
   return (
-    `🌟 *New Booking Confirmed!*\n\n` +
-    `👤 *Name:* ${booking.name}\n` +
-    `📞 *Phone:* ${booking.phone}\n` +
-    `📧 *Email:* ${booking.email}\n` +
-    `🔮 *Service:* ${booking.service}\n` +
-    `📅 *Date:* ${dateStr}\n` +
-    `⏰ *Time:* ${booking.time}\n` +
-    `💻 *Mode:* ${booking.mode}\n` +
-    `💰 *Amount Paid:* ₹${amountPaise / 100}\n` +
-    `🧾 *Payment ID:* ${paymentId}\n` +
-    `📝 *Booking ID:* ${booking._id}\n` +
-    (booking.notes ? `📌 *Notes:* ${booking.notes}\n` : '') +
+    `🌟 New Booking Confirmed!\n\n` +
+    `👤 Name: ${booking.name}\n` +
+    `📞 Phone: ${booking.phone}\n` +
+    `📧 Email: ${booking.email}\n` +
+    `🔮 Service: ${booking.service}\n` +
+    `📅 Date: ${dateStr}\n` +
+    `⏰ Time: ${booking.time}\n` +
+    `💻 Mode: ${booking.mode}\n` +
+    `💰 Amount Paid: Rs.${amountPaise / 100}\n` +
+    `🧾 Payment ID: ${paymentId}\n` +
+    `📝 Booking ID: ${booking._id}\n` +
+    (booking.notes ? `📌 Notes: ${booking.notes}\n` : '') +
     `\n🙏 Jai Mata Di! Please confirm the slot.`
   );
 };
@@ -70,9 +70,8 @@ const sendTelegramNotification = async (message) => {
 
   try {
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-      chat_id:    chatId,
-      text:       message,
-      parse_mode: 'Markdown',
+      chat_id: chatId,
+      text:    message,
     }, { timeout: 10000 });
 
     console.log('✅ Telegram notification sent!');

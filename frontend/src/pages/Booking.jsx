@@ -11,15 +11,15 @@ const SERVICES = [
   'Career Guidance', 'Health Astrology', 'Business Astrology',
 ];
 const TIME_SLOTS = [
-  '9:00 AM','10:00 AM','11:00 AM','12:00 PM',
-  '2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM',
+  '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
+  '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM',
 ];
 const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
 /* ─── Receipt Download (pure HTML → print) ──────────────────────────────── */
 const downloadReceipt = (booking, payment) => {
   const date = booking.date
-    ? new Date(booking.date).toLocaleDateString('en-IN', { weekday:'long', day:'numeric', month:'long', year:'numeric' })
+    ? new Date(booking.date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
     : '';
   const html = `
     <html>
@@ -47,7 +47,7 @@ const downloadReceipt = (booking, payment) => {
       <div class="header">
         <h1>🔮 Aacharya Jyoti</h1>
         <p>Vedic Astrologer & Spiritual Guide</p>
-        <p>✉ jyotisinghsengar1881@gmail.com &nbsp;|&nbsp; 📞 +91 94250 24728</p>
+        <p>✉ jyotisinghsengar1881@gmail.com &nbsp;|&nbsp; 📞 +91 90399 41589</p>
         <div class="badge">✅ BOOKING CONFIRMED</div>
       </div>
       <div class="section">
@@ -93,9 +93,9 @@ const loadRazorpayScript = () =>
   new Promise((resolve) => {
     if (document.getElementById('razorpay-script')) return resolve(true);
     const script = document.createElement('script');
-    script.id  = 'razorpay-script';
+    script.id = 'razorpay-script';
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.onload  = () => resolve(true);
+    script.onload = () => resolve(true);
     script.onerror = () => resolve(false);
     document.body.appendChild(script);
   });
@@ -106,8 +106,8 @@ const Booking = () => {
     name: '', email: '', phone: '', service: '',
     date: '', time: '', mode: 'Online', notes: '',
   });
-  const [prices, setPrices]       = useState({});
-  const [loading, setLoading]     = useState(false);
+  const [prices, setPrices] = useState({});
+  const [loading, setLoading] = useState(false);
   const [confirmed, setConfirmed] = useState(null); // { booking, payment }
 
   const today = new Date().toISOString().split('T')[0];
@@ -116,7 +116,7 @@ const Booking = () => {
   useEffect(() => {
     api.get('/payments/prices')
       .then(r => setPrices(r.data))
-      .catch(() => {}); // silently ignore if API down
+      .catch(() => { }); // silently ignore if API down
   }, []);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -140,18 +140,18 @@ const Booking = () => {
       // 3. Open Razorpay checkout popup
       await new Promise((resolve, reject) => {
         const rzp = new window.Razorpay({
-          key:         RAZORPAY_KEY || order.keyId,
-          amount:      order.amount,
-          currency:    order.currency,
-          order_id:    order.orderId,
-          name:        'Aacharya Jyoti',
+          key: RAZORPAY_KEY || order.keyId,
+          amount: order.amount,
+          currency: order.currency,
+          order_id: order.orderId,
+          name: 'Aacharya Jyoti',
           description: form.service,
-          image:       '/favicon.svg',
+          image: '/favicon.svg',
 
           // ── Pre-fill customer details ──────────────────────────────
           prefill: {
-            name:    form.name,
-            email:   form.email,
+            name: form.name,
+            email: form.email,
             contact: form.phone,
           },
 
@@ -164,8 +164,10 @@ const Booking = () => {
                   name: 'Pay via UPI',
                   instruments: [
                     // UPI apps — Google Pay, PhonePe, Paytm
-                    { method: 'upi', flows: ['intent'],
-                      apps: ['google_pay', 'phonepe', 'paytm'] },
+                    {
+                      method: 'upi', flows: ['intent'],
+                      apps: ['google_pay', 'phonepe', 'paytm']
+                    },
                     // Enter UPI ID manually
                     { method: 'upi', flows: ['collect'] },
                     // UPI QR code
@@ -182,7 +184,7 @@ const Booking = () => {
                 },
               },
               // UPI shown first, other methods below
-              sequence:    ['block.upi_block', 'block.other_block'],
+              sequence: ['block.upi_block', 'block.other_block'],
               preferences: { show_default_blocks: false },
             },
           },
@@ -197,10 +199,10 @@ const Booking = () => {
           handler: async (response) => {
             try {
               const { data } = await api.post('/payments/verify', {
-                razorpay_order_id:   response.razorpay_order_id,
+                razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature:  response.razorpay_signature,
-                bookingData:         form,
+                razorpay_signature: response.razorpay_signature,
+                bookingData: form,
               });
 
               setConfirmed({
@@ -208,10 +210,8 @@ const Booking = () => {
                 payment: data.payment,
               });
 
-              // Auto-open WhatsApp to notify Aacharya Jyoti
-              if (data.waLink) {
-                setTimeout(() => window.open(data.waLink, '_blank'), 1000);
-              }
+              // Server now sends WhatsApp + Email notifications automatically
+              // No need to open wa.me on customer's phone anymore
 
               resolve();
             } catch (err) {
@@ -235,7 +235,7 @@ const Booking = () => {
   if (confirmed) {
     const { booking, payment } = confirmed;
     const dateStr = booking.date
-      ? new Date(booking.date).toLocaleDateString('en-IN', { weekday:'long', day:'numeric', month:'long', year:'numeric' })
+      ? new Date(booking.date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
       : '';
 
     return (
@@ -306,7 +306,7 @@ const Booking = () => {
                 className="btn btn-secondary"
                 onClick={() => {
                   setConfirmed(null);
-                  setForm({ name:'',email:'',phone:'',service:'',date:'',time:'',mode:'Online',notes:'' });
+                  setForm({ name: '', email: '', phone: '', service: '', date: '', time: '', mode: 'Online', notes: '' });
                 }}
               >
                 Book Another
@@ -339,10 +339,10 @@ const Booking = () => {
           <div className="booking-info">
             <h3>What to Expect</h3>
             {[
-              { icon:'🗓️', title:'Flexible Scheduling', desc:'Choose from morning to evening slots, 6 days a week.' },
-              { icon:'💻', title:'Online & In-Person',  desc:'Video call via Zoom/WhatsApp or visit in New Delhi.' },
-              { icon:'🔒', title:'Secure Payment',      desc:'Powered by Razorpay — UPI, Cards, Netbanking accepted.' },
-              { icon:'⏱️', title:'Session Duration',    desc:'Most sessions are 30–90 minutes depending on service.' },
+              { icon: '🗓️', title: 'Flexible Scheduling', desc: 'Choose from morning to evening slots, 6 days a week.' },
+              { icon: '💻', title: 'Online & In-Person', desc: 'Video call via Zoom/WhatsApp or visit in New Delhi.' },
+              { icon: '🔒', title: 'Secure Payment', desc: 'Powered by Razorpay — UPI, Cards, Netbanking accepted.' },
+              { icon: '⏱️', title: 'Session Duration', desc: 'Most sessions are 30–90 minutes depending on service.' },
             ].map((item) => (
               <div key={item.title} className="booking-info__item glass-card">
                 <span className="booking-info__icon">{item.icon}</span>
@@ -365,7 +365,7 @@ const Booking = () => {
                 src="https://razorpay.com/assets/razorpay-glyph.svg"
                 alt="Powered by Razorpay"
                 className="booking-razorpay-logo"
-                onError={e => e.target.style.display='none'}
+                onError={e => e.target.style.display = 'none'}
               />
             </div>
           </div>

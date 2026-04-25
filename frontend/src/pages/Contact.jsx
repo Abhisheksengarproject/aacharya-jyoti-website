@@ -45,7 +45,7 @@ const Contact = () => {
 
             {[
               { icon: <FaMapMarkerAlt />, label: 'Location', value: 'Sehore, India (Online Worldwide)' },
-              { icon: <FaPhone />, label: 'Phone / WhatsApp', value: '+91 94250 24728' },
+              { icon: <FaPhone />, label: 'Phone / WhatsApp', value: '+91 90399 41589' },
               { icon: <FaEnvelope />, label: 'Email', value: 'jyotisinghsengar1881@gmail.com' },
               { icon: <FaClock />, label: 'Hours', value: 'Mon–Sat: 9:00 AM – 7:00 PM IST' },
             ].map((item) => (

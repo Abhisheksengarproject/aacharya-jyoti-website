@@ -23,7 +23,7 @@ const Footer = () => {
               <a href="#" className="footer__social-btn" aria-label="Facebook"><FaFacebookF /></a>
               <a href="#" className="footer__social-btn footer__social-btn--instagram" aria-label="Instagram"><FaInstagram /></a>
               <a href="#" className="footer__social-btn footer__social-btn--youtube" aria-label="YouTube"><FaYoutube /></a>
-              <a href="https://wa.me/911234567890" className="footer__social-btn footer__social-btn--whatsapp" aria-label="WhatsApp"><FaWhatsapp /></a>
+              <a href="https://wa.me/919039941589" className="footer__social-btn footer__social-btn--whatsapp" aria-label="WhatsApp"><FaWhatsapp /></a>
             </div>
           </div>
 
@@ -52,7 +52,7 @@ const Footer = () => {
             <h4 className="footer__col-title">Contact</h4>
             <ul className="footer__contact-info">
               <li>📍 Sehore, India</li>
-              <li>📞 +91 94250 24728</li>
+              <li>📞 +91 90399 41589</li>
               <li>✉️ jyotisinghsengar1881@gmail.com</li>
               <li>🕐 Mon–Sat: 9AM – 7PM</li>
             </ul>

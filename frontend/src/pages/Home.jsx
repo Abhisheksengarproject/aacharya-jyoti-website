@@ -60,7 +60,7 @@ const Home = () => {
                 Know More
               </Link>
               <a
-                href="https://wa.me/919425024728"
+                href="https://wa.me/919039941589"
                 className="hero__whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -53,31 +53,28 @@ const buildBookingMessage = (booking, paymentId, amountPaise) => {
   );
 };
 
-// ─── Send Telegram notification (FREE, instant, 100% reliable) ────────────────
-// Setup:
-//   1. Search @BotFather on Telegram → /newbot → get BOT_TOKEN
-//   2. Aacharya Jyoti opens the bot and sends /start
-//   3. Visit: https://api.telegram.org/bot<TOKEN>/getUpdates → get chat_id
-//   4. Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env / Render
-const sendTelegramNotification = async (message) => {
-  const token  = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+// ─── Send WhatsApp notification via Green API (FREE, direct to WhatsApp) ────────
+const sendWhatsAppNotification = async (message) => {
+  const instanceId = process.env.GREEN_API_INSTANCE_ID;
+  const token      = process.env.GREEN_API_TOKEN;
+  const phone      = process.env.WHATSAPP_PHONE || '919039941589';
 
-  if (!token || !chatId) {
-    console.log('⚠️  Telegram notification skipped — TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set');
+  if (!instanceId || !token) {
+    console.log('⚠️  WhatsApp notification skipped — GREEN_API credentials not set');
     return false;
   }
 
   try {
-    await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-      chat_id: chatId,
-      text:    message,
-    }, { timeout: 10000 });
+    const url = `https://7107.api.greenapi.com/waInstance${instanceId}/sendMessage/${token}`;
+    await axios.post(url, {
+      chatId:  `${phone}@c.us`,
+      message: message,
+    }, { timeout: 15000 });
 
-    console.log('✅ Telegram notification sent!');
+    console.log('✅ WhatsApp (Green API) notification sent!');
     return true;
   } catch (err) {
-    console.error('❌ Telegram notification failed:', err.response?.data?.description || err.message);
+    console.error('❌ WhatsApp notification failed:', err.response?.data || err.message);
     return false;
   }
 };
@@ -207,16 +204,16 @@ const verifyPayment = asyncHandler(async (req, res) => {
   console.log(`   Pay ID:  ${razorpay_payment_id}`);
   console.log('====================================\n');
 
-  // 5. Send AUTOMATIC notifications — fire-and-forget (don't block response)
+  // 5. Send AUTOMATIC notifications — fire-and-forget
   const message = buildBookingMessage(booking, razorpay_payment_id, payment.amount);
 
   Promise.allSettled([
-    sendTelegramNotification(message),
+    sendWhatsAppNotification(message),
     sendBookingEmail(booking, razorpay_payment_id, payment.amount),
   ]).then((results) => {
-    const tg    = results[0].status === 'fulfilled' && results[0].value;
+    const wa    = results[0].status === 'fulfilled' && results[0].value;
     const email = results[1].status === 'fulfilled' && results[1].value;
-    console.log(`📨 Notifications: Telegram=${tg ? '✅' : '❌'}, Email=${email ? '✅' : '❌'}`);
+    console.log(`📨 Notifications: WhatsApp=${wa ? '✅' : '❌'}, Email=${email ? '✅' : '❌'}`);
   });
 
   // 6. Respond to customer immediately

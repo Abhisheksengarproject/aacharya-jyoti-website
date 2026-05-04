@@ -21,14 +21,28 @@ const getRazorpay = () => {
 
 // ─── Service Prices (in paise — ₹1 = 100 paise) ──────────────────────────────
 const SERVICE_PRICES = {
-  'Kundali Reading':        100,    // ₹1 — TEMPORARY for live testing (change back to 50000 later)
-  'Numerology':             40000,  // ₹400
-  'Tarot Card Reading':     30000,  // ₹300
-  'Vastu Consultation':     80000,  // ₹800
-  'Marriage Compatibility': 60000,  // ₹600
-  'Career Guidance':        50000,  // ₹500
-  'Health Astrology':       50000,  // ₹500
-  'Business Astrology':     70000,  // ₹700
+  // ── Consultations ──────────────────────────────────────────
+  'Kundali Reading (Advanced KP)': 210000,  // ₹2,100
+  'Kundali Reading (Basic)':       110000,  // ₹1,100
+  'Numerology':                    100000,  // ₹1,000
+  'Tarot Card Reading':             80000,  // ₹800
+  'Vastu Shastra':                 210000,  // ₹2,100
+  'Marriage Compatibility':        110000,  // ₹1,100
+  'Career Guidance':               100000,  // ₹1,000
+  'Health Astrology':              120000,  // ₹1,200
+
+  // ── Puja & Rituals ─────────────────────────────────────────
+  'Maha Mrityunjaya Puja':      12500000,  // ₹1,25,000
+  'Sampurna / Navgrah Shanti':   5100000,  // ₹51,000
+  'Kaal Sarp Dosh Shanti':       3100000,  // ₹31,000
+  'Mangal Dosh Shanti':          3150000,  // ₹31,500
+  'Rin Mukti Dosh Nivaran':      3100000,  // ₹31,000
+  'Vivah Sanskar':               2500000,  // ₹25,000
+  'Vastu Ratna Vichar':           510000,  // ₹5,100
+
+  // ── Courses ────────────────────────────────────────────────
+  'Basic Astrology Course':       450000,  // ₹4,500
+  'Advanced Astrology Course':   1150000,  // ₹11,500
 };
 
 // ─── Build booking message ────────────────────────────────────────────────────

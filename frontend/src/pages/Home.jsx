@@ -5,12 +5,14 @@ import aacharyaImg from '../assets/images/image.jpg';
 import './Home.css';
 
 const services = [
-  { icon: '🔮', title: 'Kundali Reading', desc: 'Unlock the secrets hidden in your birth chart and understand your life path.' },
-  { icon: '🔢', title: 'Numerology', desc: 'Discover the power of numbers and how they shape your destiny.' },
-  { icon: '🃏', title: 'Tarot Reading', desc: 'Gain clarity on love, career, and life through ancient Tarot wisdom.' },
-  { icon: '🏠', title: 'Vastu Shastra', desc: 'Align your home with cosmic energies for prosperity and peace.' },
-  { icon: '💑', title: 'Marriage Compatibility', desc: 'Check planetary alignment for a harmonious and blessed union.' },
-  { icon: '💼', title: 'Career Guidance', desc: 'Find your destined career path with astrological insights.' },
+  { icon: '🔮', title: 'Kundali Reading (Advanced)', desc: 'Deep KP system analysis of your birth chart — planetary positions, dasha, and precise life predictions.' },
+  { icon: '⭐', title: 'Kundali Reading (Basic)', desc: 'A concise Kundali overview covering key influences and important life areas for quick clarity.' },
+  { icon: '🔢', title: 'Numerology', desc: 'Discover the power of numbers and how they shape your destiny, relationships, and life purpose.' },
+  { icon: '🃏', title: 'Tarot Card Reading', desc: 'Gain clarity on love, career, finance, and life through the ancient art of Tarot.' },
+  { icon: '🏗️', title: 'Vastu Shastra', desc: 'Align your home or office with cosmic energies for prosperity, health, and positive vibrations.' },
+  { icon: '💑', title: 'Marriage Compatibility', desc: 'Thorough Kundali matching and compatibility analysis for a blessed and harmonious union.' },
+  { icon: '🕉️', title: 'Navgrah Shanti Puja', desc: 'Complete Navgrah puja to balance energies of all nine planets for overall peace and prosperity.' },
+  { icon: '💎', title: 'Vastu Ratna Vichar', desc: 'Specialized consultation combining Vastu principles with gemstone therapy for cosmic harmony.' },
 ];
 
 const stats = [

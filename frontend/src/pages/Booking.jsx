@@ -5,11 +5,43 @@ import api from '../utils/api';
 import './Booking.css';
 
 /* ─── Constants ─────────────────────────────────────────────────────────── */
-const SERVICES = [
-  'Kundali Reading', 'Numerology', 'Tarot Card Reading',
-  'Vastu Consultation', 'Marriage Compatibility',
-  'Career Guidance', 'Health Astrology', 'Business Astrology',
+const SERVICE_GROUPS = [
+  {
+    group: '🔮 Consultations',
+    services: [
+      'Kundali Reading (Advanced KP)',
+      'Kundali Reading (Basic)',
+      'Numerology',
+      'Tarot Card Reading',
+      'Vastu Shastra',
+      'Marriage Compatibility',
+      'Career Guidance',
+      'Health Astrology',
+    ],
+  },
+  {
+    group: '🪔 Puja & Rituals',
+    services: [
+      'Maha Mrityunjaya Puja',
+      'Sampurna / Navgrah Shanti',
+      'Kaal Sarp Dosh Shanti',
+      'Mangal Dosh Shanti',
+      'Rin Mukti Dosh Nivaran',
+      'Vivah Sanskar',
+      'Vastu Ratna Vichar',
+    ],
+  },
+  {
+    group: '📚 Courses',
+    services: [
+      'Basic Astrology Course',
+      'Advanced Astrology Course',
+    ],
+  },
 ];
+// Flat list for validation
+const SERVICES = SERVICE_GROUPS.flatMap((g) => g.services);
+
 const TIME_SLOTS = [
   '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
   '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM',
@@ -392,12 +424,16 @@ const Booking = () => {
               </div>
               <div className="form-group">
                 <label>Select Service *</label>
-                <select name="service" value={form.service} onChange={handleChange} required>
+                <select name="service" value={form.service} onChange={handleChange} required className="svc-native-select">
                   <option value="">-- Choose a service --</option>
-                  {SERVICES.map((s) => (
-                    <option key={s} value={s}>
-                      {s}{prices[s] ? ` — ₹${prices[s]}` : ''}
-                    </option>
+                  {SERVICE_GROUPS.map((grp) => (
+                    <optgroup key={grp.group} label={grp.group}>
+                      {grp.services.map((s) => (
+                        <option key={s} value={s}>
+                          {s}{prices[s] ? ` — ₹${prices[s]}` : ''}
+                        </option>
+                      ))}
+                    </optgroup>
                   ))}
                 </select>
               </div>

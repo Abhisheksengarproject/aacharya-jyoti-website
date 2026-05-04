@@ -1,4 +1,23 @@
+/* ─── Native Select Optgroup Color Fix ───────────────────────────────────── */
+.svc-native-select {
+  background-color: #1a0d2e !important;
+  color: #f0f0f0 !important;
+}
+.svc-native-select option {
+  background-color: #1a0d2e;
+  color: #f0f0f0;
+  padding: 8px;
+}
+.svc-native-select optgroup {
+  background-color: #2d1a6e;
+  color: #d4a843;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
+
 /* ─── Layout ─────────────────────────────────────────────────────────────── */
+
 .booking-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start; }
 .booking-info { display: flex; flex-direction: column; gap: 12px; }
 .booking-info h3 { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--accent-gold); margin-bottom: 24px; }

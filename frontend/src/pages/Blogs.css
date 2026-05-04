@@ -1,4 +1,30 @@
 .blogs-filter { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 48px; }
+
+/* Filter buttons */
+.services-filter__btn {
+  padding: 9px 20px;
+  border-radius: var(--radius-full);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 40px;
+}
+.services-filter__btn--active {
+  background: rgba(212,168,67,0.12);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+@media (hover: hover) {
+  .services-filter__btn:hover { border-color: var(--border-glow); color: var(--text-primary); }
+}
+
+
 .blogs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .blog-card { overflow: hidden; padding: 0; }
 .blog-card__image { position: relative; height: 180px; background: var(--gradient-card); display: flex; align-items: center; justify-content: center; }
